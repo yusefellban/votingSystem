@@ -1,0 +1,4 @@
+--patch-module
+com.voting.votingsystem=_
+--add-reads
+com.voting.votingsystem=ALL-UNNAMED
