@@ -22,18 +22,22 @@ The **Real-Time Voting System** is a JavaFX-based application that allows users 
 
 ## System Architecture
 
-The system is divided into the following components:
+The system follows the MVC (Model-View-Controller) design pattern, dividing it into three primary components:
 
-### Client
+### Client(View)
 
 - **LoginPage**: A login interface that allows users to authenticate using their credentials.
 - **RegistrationPage**: A page for users to register a new account.
 - **VotingPage**: A page where users can view candidates and cast their votes.
 
-### Server
+### Server(Controller)
 
 - **ServerController**: Listens for incoming client connections, processes client requests (login, register, fetch candidates, cast votes), and interacts with the database.
+- **ClientController**: To handel pages 
 - **VotingDAO**: Handles interactions with the MySQL database for login, registration, vote processing, and fetching candidate information.
+
+### User(model)
+-**User**: User: A record used as a model to represent user data such as username and password.
 
 ## Setup and Installation
 
