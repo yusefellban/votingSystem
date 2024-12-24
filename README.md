@@ -65,7 +65,7 @@ CREATE TABLE candidates (
     name VARCHAR(100),
     vote_count INT DEFAULT 0
 );
-
+INSERT INTO candidates (name) VALUES ('Candidate A'), ('Candidate B'), ('Candidate C');
 CREATE TABLE voters (
     voter_id INT AUTO_INCREMENT PRIMARY KEY,
     email VARCHAR(100) UNIQUE,
