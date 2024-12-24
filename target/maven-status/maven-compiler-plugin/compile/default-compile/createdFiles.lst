@@ -1,9 +1,7 @@
 com\voting\votingsystem\view\VotingPage$2.class
-com\voting\votingsystem\view\LoginPage$1.class
 com\voting\votingsystem\view\VotingPage$1.class
 com\voting\votingsystem\view\VotingPage.class
 com\voting\votingsystem\view\LoginPage.class
-com\voting\votingsystem\view\RegistrationPage$1.class
 com\voting\votingsystem\controller\clientController.class
 module-info.class
 com\voting\votingsystem\view\RegistrationPage.class

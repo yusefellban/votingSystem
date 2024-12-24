@@ -1,6 +1,8 @@
 
 package com.voting.votingsystem.controller;
 
+import com.voting.votingsystem.model.User;
+
 import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
@@ -37,22 +39,23 @@ public class serverController {
 
             String command = in.readLine();
             System.out.println(command);
-            if ("LOGIN".equals(command)) {
-                String username = in.readLine();
-                String password = in.readLine();
-                out.println(VotingDAO.verifyLogin(username, password));
-            } else if ("REGISTER".equals(command)) {
-                String username = in.readLine();
-                String password = in.readLine();
-                out.println(VotingDAO.verifyRegister(username, password));
-            } else if ("GET_CANDIDATES".equals(command)) {
-                out.println(VotingDAO.fetchCandidates());
-            } else {
-                String email = command;
-                String candidateIdStr = in.readLine();
-                int candidateId = Integer.parseInt(candidateIdStr);
-                String response = VotingDAO.processVote(email, candidateId);
-                out.println(response);
+            switch (command) {
+                case "LOGIN" -> {
+                    User user = new User(in.readLine(), in.readLine());
+                    out.println(VotingDAO.verifyLogin(user));
+                }
+                case "REGISTER" -> {
+                    User user = new User(in.readLine(), in.readLine());
+                    out.println(VotingDAO.verifyRegister(user));
+                }
+                case "GET_CANDIDATES" -> out.println(VotingDAO.fetchCandidates());
+                case null, default -> {
+                    String email = command;
+                    String candidateIdStr = in.readLine();
+                    int candidateId = Integer.parseInt(candidateIdStr);
+                    String response = VotingDAO.processVote(email, candidateId);
+                    out.println(response);
+                }
             }
         } catch (Exception e) {
             e.printStackTrace();

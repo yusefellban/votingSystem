@@ -1,5 +1,8 @@
 package com.voting.votingsystem.controller;
 
+
+import com.voting.votingsystem.model.User;
+
 import java.sql.*;
 
 public class VotingDAO {
@@ -7,14 +10,14 @@ public class VotingDAO {
     private static final String DB_USER = "root";
     private static final String DB_PASSWORD = "123!";
 
-    public static String verifyLogin(String username, String password) {
+    public static String verifyLogin(User user) {
         try (Connection conn = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
              PreparedStatement stmt = conn.prepareStatement("SELECT password FROM users WHERE username = ?")) {
 
-            stmt.setString(1, username);
+            stmt.setString(1, user.userName());
             ResultSet rs = stmt.executeQuery();
             if (rs.next()) {
-                return rs.getString("password").equals(password) ? "Login successful!" : "Invalid password!";
+                return rs.getString("password").equals(user.password()) ? "Login successful!" : "Invalid password!";
             } else {
                 return "Username not found!";
             }
@@ -24,14 +27,14 @@ public class VotingDAO {
         }
     }
 
-    public static String verifyRegister(String username, String password) {
+    public static String verifyRegister(User user) {
         try (Connection conn = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
              PreparedStatement stmt = conn.prepareStatement("INSERT IGNORE INTO users (username, password) VALUES (?, ?)")) {
 
-            stmt.setString(1, username);
-            stmt.setString(2, password);
+            stmt.setString(1, user.userName());
+            stmt.setString(2, user.password());
             int rowsAffected = stmt.executeUpdate();
-            return rowsAffected > 0 ? "Registration successful!" : "User already exists or failed to register.";
+            return rowsAffected > 0 ? "Registration Successful!" : "User already exists";
         } catch (SQLException e) {
             e.printStackTrace();
             return "Error during registration!";
