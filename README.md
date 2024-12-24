@@ -37,7 +37,8 @@ The system follows the MVC (Model-View-Controller) design pattern, dividing it i
 - **VotingDAO**: Handles interactions with the MySQL database for login, registration, vote processing, and fetching candidate information.
 
 ### User(model)
--**User**: User: A record used as a model to represent user data such as username and password.
+
+-**User**: A record used as a model to represent user data such as username and password.
 
 ## Setup and Installation
 
