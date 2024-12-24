@@ -3,12 +3,32 @@ package com.voting.votingsystem.controller;
 
 import com.voting.votingsystem.model.User;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.sql.*;
+import java.util.Properties;
 
 public class VotingDAO {
-    private static final String DB_URL = "jdbc:mysql://localhost:3306/voting_db";
-    private static final String DB_USER = "root";
-    private static final String DB_PASSWORD = "123!";
+    private static final String DB_URL;
+    private static final String DB_USER;
+    private static final String DB_PASSWORD;
+
+    // Static block to load database configuration from properties file
+    static {
+        Properties properties = new Properties();
+        try (InputStream input = VotingDAO.class.getClassLoader().getResourceAsStream("database.properties")) {
+            if (input == null) {
+                throw new IOException("Unable to find database.properties");
+            }
+            properties.load(input);
+
+            DB_URL = properties.getProperty("db.url");
+            DB_USER = properties.getProperty("db.username");
+            DB_PASSWORD = properties.getProperty("db.password");
+        } catch (IOException e) {
+            throw new ExceptionInInitializerError("Failed to load database configuration: " + e.getMessage());
+        }
+    }
 
     public static String verifyLogin(User user) {
         try (Connection conn = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);

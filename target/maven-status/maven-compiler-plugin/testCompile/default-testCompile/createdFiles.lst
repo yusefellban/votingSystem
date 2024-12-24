@@ -1,2 +1,3 @@
-com\voting\votingsystem\controller\clientControllerTest.class
-com\voting\votingsystem\controller\serverControllerTest.class
+com\voting\votingsystem\controller\ClientControllerTest.class
+com\voting\votingsystem\controller\ClientControllerTest$TestApplication.class
+com\voting\votingsystem\controller\ServerControllerTest.class

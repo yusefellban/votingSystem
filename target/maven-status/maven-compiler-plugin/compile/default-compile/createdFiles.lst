@@ -1,9 +1,15 @@
 com\voting\votingsystem\view\VotingPage$2.class
+com\voting\votingsystem\service\LoginService$1.class
 com\voting\votingsystem\view\VotingPage$1.class
 com\voting\votingsystem\view\VotingPage.class
 com\voting\votingsystem\view\LoginPage.class
+com\voting\votingsystem\service\LoginService.class
+com\voting\votingsystem\service\RegistrationService.class
 com\voting\votingsystem\controller\clientController.class
+com\voting\votingsystem\model\User.class
+com\voting\votingsystem\service\votingService.class
 module-info.class
+com\voting\votingsystem\service\RegistrationService$1.class
 com\voting\votingsystem\view\RegistrationPage.class
 com\voting\votingsystem\controller\serverController.class
 com\voting\votingsystem\controller\VotingDAO.class

@@ -31,32 +31,50 @@ public class RegistrationPage {
     public void show() {
 
         Label nameLabel = new Label("Name:");
-        nameLabel.setStyle("-fx-text-fill: white;");
-        nameField = new TextField();
-        nameField.setPromptText("Enter your name");
-
         Label ageLabel = new Label("Age:");
-        ageLabel.setStyle("-fx-text-fill: white;");
-        ageField = new TextField();
-        ageField.setPromptText("Enter your age");
-
-
         Label usernameLabel = new Label("Username:");
-        usernameField = new TextField();
-        usernameField.setPromptText("Enter your username");
-
         Label passwordLabel = new Label("Password:");
+
+        responseLabel = new Label();
+
+        nameField = new TextField();
+        ageField = new TextField();
+        usernameField = new TextField();
         passwordField = new PasswordField();
-        passwordField.setPromptText("Enter your password");
 
+        Button registrationButton = new Button("Register");
+        Button loginButton = new Button("I have an account");
+        VBox buttonBox = new VBox(10, registrationButton, loginButton, responseLabel);
+        VBox loginLayout = new VBox(10, nameLabel, nameField, ageLabel, ageField, usernameLabel, usernameField, passwordLabel, passwordField, buttonBox);
 
+        //styles
+
+        nameLabel.setStyle("-fx-text-fill: white;");
+        ageLabel.setStyle("-fx-text-fill: white;");
         usernameLabel.setStyle("-fx-text-fill: white;");
         passwordLabel.setStyle("-fx-text-fill: white;");
 
-        Button registrationButton = new Button("Register");
+        nameField.setPromptText("Enter your name");
+        ageField.setPromptText("Enter your age");
+        usernameField.setPromptText("Enter your username");
+        passwordField.setPromptText("Enter your password");
+
         registrationButton.setStyle("-fx-background-color: #0059ff; -fx-text-fill: white; -fx-font-size: 14px; "
                 + "-fx-padding: 8px 15px; -fx-border-radius: 5px; -fx-background-radius: 5px;");
         registrationButton.setCursor(Cursor.HAND);
+
+        loginButton.setStyle("-fx-background-color: #353535; -fx-text-fill: #9d9bdc; -fx-font-size: 12px; "
+                + "-fx-padding: 8px 15px; -fx-border-radius: 5px; -fx-background-radius: 5px;-fx-font-style: italic;");
+        loginButton.setCursor(Cursor.HAND);
+
+
+        buttonBox.setAlignment(Pos.CENTER);
+
+        loginLayout.setAlignment(Pos.CENTER_LEFT);
+        loginLayout.setPadding(new Insets(60));
+        loginLayout.setStyle("-fx-background-color: #444444;");
+
+        //Actions
         registrationButton.setOnAction(event -> {
                     if (dataValidation()) {
                         responseLabel.setText("correct data ");
@@ -66,22 +84,9 @@ public class RegistrationPage {
                     }
                 }
         );
-        Button loginButton = new Button("I have an account");
-        loginButton.setStyle("-fx-background-color: #353535; -fx-text-fill: #9d9bdc; -fx-font-size: 12px; "
-                + "-fx-padding: 8px 15px; -fx-border-radius: 5px; -fx-background-radius: 5px;-fx-font-style: italic;");
-        loginButton.setCursor(Cursor.HAND);
         loginButton.setOnAction(event -> app.showLoginPage());
 
-        responseLabel = new Label();
-
-
-        VBox buttonBox = new VBox(10, registrationButton, loginButton, responseLabel);
-        buttonBox.setAlignment(Pos.CENTER);
-
-        VBox loginLayout = new VBox(10, nameLabel, nameField, ageLabel, ageField, usernameLabel, usernameField, passwordLabel, passwordField, buttonBox);
-        loginLayout.setAlignment(Pos.CENTER_LEFT);
-        loginLayout.setPadding(new Insets(60));
-        loginLayout.setStyle("-fx-background-color: #444444;");
+        //Show screen
 
         Scene loginScene = new Scene(loginLayout, 400, 500);
         stage.setTitle("Registration");
